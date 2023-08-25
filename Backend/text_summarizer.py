@@ -2,7 +2,6 @@ import numpy as np
 import networkx as nx
 from sentence_transformers import SentenceTransformer
 from scipy.spatial.distance import cosine
-from samples import test_text
 from pre_processor import PreProcessor
 
 class TextSummarizer:
@@ -51,7 +50,3 @@ class TextSummarizer:
             return 8
         else:
             return 10
-        
-if __name__ == "__main__":
-    summarizer = TextSummarizer()
-    print(summarizer.summarize(test_text))
