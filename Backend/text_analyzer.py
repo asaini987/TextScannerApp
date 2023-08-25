@@ -1,5 +1,5 @@
-from rake_nltk import Rake
 import nltk
+from rake_nltk import Rake
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 
@@ -27,5 +27,3 @@ class TextAnalyzer:
                     all_named_entities.append(f"{entity_text} {label}")
         
         return all_named_entities
-    
-
