@@ -30,7 +30,7 @@ class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let apiLink = URL(string: "http://127.0.0.1:5000/extract_text") else {
+        guard let apiLink = URL(string: "http://example_API/extract_text") else {
             return "Invalid URL"
         }
         
@@ -60,7 +60,7 @@ class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let url = URL(string: "http://127.0.0.1:5000/summarize") else {
+        guard let url = URL(string: "http://example_API/summarize") else {
             return "Invalid URL"
         }
         
