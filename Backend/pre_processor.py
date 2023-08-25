@@ -3,7 +3,6 @@ from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords, wordnet
 from nltk import pos_tag
-from samples import test_text
 
 class PreProcessor:
     def __init__(self, text):
@@ -50,9 +49,3 @@ class PreProcessor:
             return new_word
         else:
             return word.lower()
-    
-
-    
-
-if __name__ == "__main__":
-    processor = PreProcessor(test_text)
