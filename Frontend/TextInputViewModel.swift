@@ -35,7 +35,7 @@ final class TextInputViewModel: ObservableObject {
         //encoding URL to JSON
         let requestObject = URLRequestBody(url: link)
         guard let encoded = try? JSONEncoder().encode(requestObject) else {
-            return "Cant encode URL to JSON"
+            return "Can't encode URL to JSON"
         }
         
         //prepping POST request
