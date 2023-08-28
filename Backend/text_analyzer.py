@@ -5,11 +5,12 @@ from nltk.tag import pos_tag
 
 class TextAnalyzer:
 
-    def extract_key_pharses(self, text):
+    def extract_key_phrases(self, text):
         r = Rake()
         r.extract_keywords_from_text(text)
-        key_phrases = "\n".join(r.get_ranked_phrases())
-        return key_phrases[:5]
+        all_key_phrases = r.get_ranked_phrases()
+        key_phrases = "\n".join(all_key_phrases[:5])
+        return key_phrases
 
     def name_entities(self, text):
         tokenized_sentences = sent_tokenize(text)
