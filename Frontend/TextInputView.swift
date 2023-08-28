@@ -15,15 +15,34 @@ struct TextInputView: View {
             HStack {
                 scanButton
                 imgButton
+                toolButton
             }
             urlInput
             textOutput
                 .padding(.bottom)
-            summarizeButton
+            analyzeButton
         }
         .padding()
         .sheet(isPresented: $showScanner) {
             DocScanner(recognizedText: $scannedText)
+        }
+    }
+    
+    
+    var toolButton: some View {
+        Button {
+            withAnimation {
+                viewModel.selectAnalysisMode()
+            }
+        } label: {
+            Image(systemName: "text.magnifyingglass")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 45)
+                .foregroundColor(.white)
+                .frame(width: 100, height: 53)
+                .background(.green)
+                .cornerRadius(10)
         }
     }
 
@@ -33,6 +52,7 @@ struct TextInputView: View {
                 scannedText = await viewModel.fetchText(from: url)
             }
         } label: {
+            
             Text("Submit")
                 .padding()
                 .foregroundColor(.white)
@@ -40,6 +60,17 @@ struct TextInputView: View {
                 .frame(width: 100, height: 50)
                 .background(.green)
                 .cornerRadius(10)
+        }
+    }
+    
+    var analysisButtonTitle: some View {
+        switch viewModel.analysisMode {
+            case .summary:
+                return Text("Summarize")
+            case .keyPhrases:
+                return Text("Get Key Phrases")
+            case .namedEntities:
+                return Text("Extract Named Entities")
         }
     }
     
@@ -52,7 +83,7 @@ struct TextInputView: View {
                 .scaledToFit()
                 .frame(width: 50, height: 50)
                 .foregroundColor(.white)
-                .frame(width: 175, height: 50)
+                .frame(width: 120, height: 50)
                 .background(.green)
                 .cornerRadius(10)
         }
@@ -67,20 +98,27 @@ struct TextInputView: View {
                 .scaledToFit()
                 .frame(width: 50, height: 50)
                 .foregroundColor(.white)
-                .frame(width: 175, height: 50)
+                .frame(width: 120, height: 50)
                 .background(.green)
                 .cornerRadius(10)
                 
         }
     }
     
-    var summarizeButton: some View {
+    var analyzeButton: some View {
         Button {
             Task {
-                scannedText = await viewModel.fetchSummary(of: scannedText)
+                switch viewModel.analysisMode {
+                    case .summary:
+                        scannedText = await viewModel.fetchSummary(of: scannedText)
+                    case .keyPhrases:
+                        scannedText = await viewModel.fetchKeyPhrases(from: scannedText)
+                    case .namedEntities:
+                        scannedText = await viewModel.fetchNamedeEntities(from: scannedText)
+                }
             }
         } label: {
-            Text("Summarize")
+            analysisButtonTitle
                 .padding()
                 .font(.headline)
                 .foregroundColor(.white)
@@ -124,11 +162,5 @@ struct TextInputView: View {
         static let shadowRadius: CGFloat = 4
         static let shadowX: CGFloat = 2
         static let shadowY: CGFloat = 2
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        TextInputView(viewModel: TextInputViewModel())
     }
 }
