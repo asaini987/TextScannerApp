@@ -57,7 +57,7 @@ struct DocScanner: UIViewControllerRepresentable {
                             print("No candidate found")
                             continue
                         }
-                        extractedText.append(topCandidate.string) //apending each string from each observation to a list
+                        extractedText.append(topCandidate.string) //appending each string from each observation to a list
                     }
                     
                 }
