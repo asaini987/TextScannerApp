@@ -39,7 +39,7 @@ final class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let apiLink = URL(string: "http://127.0.0.1:5000/extract_text") else {
+        guard let apiLink = URL(string: "http://example_API/extract_text") else {
             return "Invalid URL"
         }
         
@@ -69,7 +69,7 @@ final class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let url = URL(string: "http://127.0.0.1:5000/summarize") else {
+        guard let url = URL(string: "http://example_API/summarize") else {
             return "Invalid URL"
         }
         
@@ -100,7 +100,7 @@ final class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let url = URL(string: "http://127.0.0.1:5000/extract_key_phrases") else {
+        guard let url = URL(string: "http://example_API/extract_key_phrases") else {
             return "Could not access server"
         }
         
@@ -131,7 +131,7 @@ final class TextInputViewModel: ObservableObject {
         }
         
         //prepping POST request
-        guard let url = URL(string: "http://127.0.0.1:5000/named_entities") else {
+        guard let url = URL(string: "http://example_API/named_entities") else {
             return "Could not access server"
         }
         
