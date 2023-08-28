@@ -12,7 +12,7 @@ def summarize_text():
     data = request.json
     text = data.get("text")
     summary = text_summarizer.summarize(text)
-    return jsonify({"summary" : summary})
+    return jsonify({"text" : summary})
 
 @app.route("/extract_text", methods=["POST"])
 def extract_from_url():
@@ -27,15 +27,15 @@ def extract_from_url():
 def get_key_phrases():
     data = request.json
     text = data.get("text")
-    key_phrases = text_analyzer.extract_key_pharses(text)
-    return key_phrases
+    key_phrases = text_analyzer.extract_key_phrases(text)
+    return jsonify({"text" : key_phrases})
 
 @app.route("/named_entities", methods=["POST"])
 def named_entity_recog():
     data = request.json
     text = data.get("text")
     named_ents = "\n".join(text_analyzer.name_entities(text))
-    return named_ents
+    return jsonify({"text" : named_ents})
 
 if __name__ == "__main__":
     app.run(debug=True)
