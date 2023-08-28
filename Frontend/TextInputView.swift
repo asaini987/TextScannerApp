@@ -91,7 +91,7 @@ struct TextInputView: View {
     
     var scanButton: some View {
         Button {
-//            showScanner = true
+           showScanner = true
         } label: {
             Image(systemName: "camera")
                 .resizable()
